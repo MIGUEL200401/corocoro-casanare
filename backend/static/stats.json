@@ -1,5 +1,5 @@
 {
-  "total_mensajes": 165,
+  "total_mensajes": 176,
   "usuarios": {
     "verif-123": {
       "nombre": "Tester",
@@ -27,10 +27,10 @@
     },
     "8313907019": {
       "nombre": "Miguel",
-      "chats": 38,
+      "chats": 48,
       "primera_vez": "2026-08-27",
       "ultimo": "2026-08-28",
-      "ultimo_hora": 3
+      "ultimo_hora": 6
     },
     "ia-test": {
       "nombre": "",
@@ -76,22 +76,108 @@
       "primera_vez": "2026-08-28",
       "ultimo": "2026-08-28",
       "ultimo_hora": 4
+    },
+    "999": {
+      "nombre": "Test",
+      "chats": 1,
+      "primera_vez": "2026-08-28",
+      "ultimo": "2026-08-28",
+      "ultimo_hora": 7
     }
   },
   "por_dia": {
     "2026-08-27": 147,
-    "2026-08-28": 18
+    "2026-08-28": 29
   },
   "por_hora": {
     "0": 1,
     "1": 1,
     "3": 13,
-    "4": 1
+    "4": 1,
+    "6": 10,
+    "7": 1
   },
   "contenidos_generados": 12,
   "videos_generados": 8,
   "desde": "2026-08-27",
   "feed": [
+    {
+      "nombre": "Test",
+      "hora": 7,
+      "fecha": "2026-08-28",
+      "uid": "999",
+      "mensajes": 1
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 48
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 47
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 46
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 45
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 44
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 43
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 42
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 41
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 40
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 6,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 39
+    },
     {
       "nombre": "Juan",
       "hora": 4,
@@ -213,7 +299,9 @@
       "propuesta_titulo": "Aprende a tocar arpa y cuatro desde cero (online)",
       "propuesta_hora": "04:43",
       "personas": [
-        "1234567890"
+        "1234567890",
+        "8313907019",
+        "999"
       ]
     }
   }

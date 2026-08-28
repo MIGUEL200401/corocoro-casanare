@@ -251,12 +251,16 @@ Responde como COROCORO:
     if llm_resp:
         respuesta = llm_resp
     else:
-        # fallback rule-based chimba
+        # fallback rule-based chimba (siempre con sabor llanero)
         respuesta = fallback_response(intent, user_msg, tool_results)
+        import random as _rnd
+        abrir = ["¡Pilas, parce!", "¡Aja, qué más!", "¡De una!", "¡Mi pariente!", "¡Pues mire!"]
+        if not any(w in respuesta.lower() for w in ["parce", "pariente", "pilas", "de una", "llano", "cómo andamos", "qué más", "venga le cuento"]):
+            respuesta = _rnd.choice(abrir) + " " + respuesta
 
     # pedir video = respuesta rápida + bandera para que el bot lo genere y envíe
     if intent == "video":
-        respuesta = "🎬 ¡De una, mi gente! Ya estoy armando tu video del Casanare: la corocora inventa la idea, el diálogo y la escena. Dame un momentico..."
+        respuesta = "🎬 ¡De una, parce! Ya estoy armando tu video del Casanare: la corocora inventa la idea, el diálogo y la escena. Dame un momentico..."
 
     # añade fuentes
     if fuentes:
