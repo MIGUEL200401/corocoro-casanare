@@ -1,0 +1,19 @@
+# Render Blueprint para Corocoro del Casanare (plan gratis)
+services:
+  - type: web
+    name: corocoro-casanare
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CASANARE_API
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ADMIN_CHAT_ID
+        sync: false
+      - key: PIAPI_API_KEY
+        sync: false

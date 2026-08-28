@@ -1,0 +1,193 @@
+{
+  "total_mensajes": 164,
+  "usuarios": {
+    "verif-123": {
+      "nombre": "Tester",
+      "chats": 40,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "v2": {
+      "nombre": "",
+      "chats": 1,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "5397788678": {
+      "nombre": "Cristianlozano",
+      "chats": 11,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "t91": {
+      "nombre": "",
+      "chats": 21,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "8313907019": {
+      "nombre": "Miguel",
+      "chats": 38,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-28",
+      "ultimo_hora": 3
+    },
+    "ia-test": {
+      "nombre": "",
+      "chats": 32,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "ia-2": {
+      "nombre": "",
+      "chats": 8,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "8658545294": {
+      "nombre": "Carlos",
+      "chats": 2,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "tester": {
+      "nombre": "",
+      "chats": 1,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-27"
+    },
+    "6484885576": {
+      "nombre": "Yeferson",
+      "chats": 9,
+      "primera_vez": "2026-08-27",
+      "ultimo": "2026-08-28",
+      "ultimo_hora": 3
+    },
+    "999x": {
+      "nombre": "PruebaHora",
+      "chats": 1,
+      "primera_vez": "2026-08-28",
+      "ultimo": "2026-08-28",
+      "ultimo_hora": 0
+    }
+  },
+  "por_dia": {
+    "2026-08-27": 147,
+    "2026-08-28": 17
+  },
+  "por_hora": {
+    "0": 1,
+    "1": 1,
+    "3": 13
+  },
+  "contenidos_generados": 11,
+  "videos_generados": 8,
+  "desde": "2026-08-27",
+  "feed": [
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 9
+    },
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 8
+    },
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 7
+    },
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 6
+    },
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 5
+    },
+    {
+      "nombre": "Yeferson",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "6484885576",
+      "mensajes": 4
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 38
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 37
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 36
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 35
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 34
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 33
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 3,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 32
+    },
+    {
+      "nombre": "Miguel",
+      "hora": 1,
+      "fecha": "2026-08-28",
+      "uid": "8313907019",
+      "mensajes": 31
+    },
+    {
+      "nombre": "PruebaHora",
+      "hora": 0,
+      "fecha": "2026-08-28",
+      "uid": "999x",
+      "mensajes": 1
+    }
+  ]
+}

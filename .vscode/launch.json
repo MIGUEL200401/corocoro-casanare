@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Corocoro Backend (:8000)",
+      "type": "python",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/backend",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8000"],
+      "envFile": "${workspaceFolder}/backend/.env"
+    },
+    {
+      "name": "Corocoro Bot Telegram",
+      "type": "python",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/telegram_bot",
+      "program": "${workspaceFolder}/telegram_bot/bot.py"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Corocoro COMPLETO (Backend + Bot)",
+      "configurations": ["Corocoro Backend (:8000)", "Corocoro Bot Telegram"]
+    }
+  ]
+}

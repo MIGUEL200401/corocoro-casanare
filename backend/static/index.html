@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Corocoro del Casanare — Panel</title>
+<link rel="icon" type="image/png" href="/static/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<style>
+:root{
+  --amar:#ffc000; --nar:#ff6b00; --nar-osc:#e05a00; --rojo:#ff3b30;
+  --negro:#14110f; --texto:#2d2a25; --gris:#9a938a;
+  --borde:#f1e7d8; --fondo:#fffdf8;
+}
+*{box-sizing:border-box;font-family:Quicksand,'Segoe UI',system-ui,sans-serif}
+h1,h2,.sec-titulo,.brand,.num,.pct,.ring-txt,.btnD,.stat-pill{font-family:'Baloo 2',Quicksand,'Segoe UI',sans-serif}
+body{margin:0;background:
+  radial-gradient(1200px 500px at 85% -50px, rgba(255,192,0,.10), transparent 60%),
+  radial-gradient(1000px 460px at -80px 120px, rgba(255,107,0,.10), transparent 60%),
+  linear-gradient(rgba(255,253,248,.86), rgba(255,253,248,.90) 40%, rgba(255,250,242,.94)),
+  url('/static/fondo_casanare.png') center/cover fixed no-repeat;
+  color:var(--texto);min-height:100vh}
+/* ===== barra superior ===== */
+.topbar{background:#fff;border-bottom:2px solid var(--borde);padding:10px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;box-shadow:0 6px 20px rgba(20,17,15,.06)}
+.topbar .logo{width:46px;height:46px;border-radius:50%;object-fit:cover;border:3px solid var(--amar);outline:4px solid #fff3cc;box-shadow:0 3px 8px rgba(255,107,0,.25);background:#fff;animation:flotar 4s ease-in-out infinite}
+.topbar .brand{font-weight:900;font-size:19px;color:var(--negro);line-height:1;background:linear-gradient(90deg,var(--negro),var(--nar));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.topbar .brand small{display:block;font-size:11px;color:var(--gris);font-weight:800;-webkit-text-fill-color:var(--gris)}
+.topbar .spacer{flex:1}
+.stat-pill{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--borde);color:var(--texto);font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 3px 8px rgba(20,17,15,.05)}
+.stat-pill .ico{font-size:15px}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+/* ===== hero ===== */
+main{max-width:1020px;margin:0 auto;padding:22px 16px 56px}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:26px;display:flex;flex-wrap:wrap;align-items:center;gap:20px;
+  background:linear-gradient(135deg,#fffdf6 0%,#ffe9c7 45%,#ffd9b6 100%);
+  border:2px solid #ffdfae;box-shadow:0 18px 40px rgba(255,107,0,.18)}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;filter:blur(2px);opacity:.5;pointer-events:none}
+.hero::before{width:240px;height:240px;background:radial-gradient(circle,#ff6b00 0%,transparent 70%);top:-90px;right:-60px}
+.hero::after{width:180px;height:180px;background:radial-gradient(circle,#ffc000 0%,transparent 70%);bottom:-70px;left:-50px}
+.hero>*{position:relative;z-index:1}
+.hero .mascota{width:112px;height:112px;border-radius:50%;object-fit:cover;border:5px solid #fff;outline:4px solid var(--amar);box-shadow:0 10px 22px rgba(255,107,0,.35)}
+.hero h1{margin:0;font-size:26px;font-weight:900;color:var(--negro)}
+.hero h1 em{font-style:normal;color:var(--nar)}
+.hero p{margin:6px 0 0;font-size:14px;color:#7d746a}
+.hero .box-left{flex:1;min-width:240px}
+.hero .box-right{display:flex;flex-direction:column;align-items:center;gap:10px}
+/* anillo de progreso */
+.ring-wrap{position:relative;width:116px;height:116px}
+.ring-wrap svg{transform:rotate(-90deg);filter:drop-shadow(0 4px 8px rgba(255,107,0,.35))}
+.ring-wrap .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;color:var(--negro)}
+.ring-txt{background:var(--negro);color:#ffd76a;font-weight:800;font-size:12px;padding:6px 16px;border-radius:999px;box-shadow:0 4px 12px rgba(20,17,15,.25);text-align:center}
+/* botón */
+.btnD{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--nar),var(--rojo));color:#fff;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:.4px;text-decoration:none;border:0;border-radius:16px;padding:14px 26px;box-shadow:0 5px 0 var(--nar-osc),0 10px 20px rgba(255,107,0,.25);cursor:pointer;transition:transform .08s,box-shadow .08s}
+.btnD:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btnD:active{transform:translateY(4px);box-shadow:0 1px 0 var(--nar-osc)}
+.btnD.grande{font-size:17px;padding:16px 30px}
+/* secciones */
+.sec-titulo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:900;color:var(--negro);margin:30px 0 14px;text-transform:uppercase;letter-spacing:.6px}
+.sec-titulo::after{content:'';flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--amar),transparent)}
+.sec-titulo .chip{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:11px;color:#fff;font-size:15px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.sec-titulo .chip.g{background:linear-gradient(135deg,#ffc000,#ff6b00)} .sec-titulo .chip.a{background:linear-gradient(135deg,#333,#000)} .sec-titulo .chip.l{background:linear-gradient(135deg,#ff8a00,#ff6b00)} .sec-titulo .chip.r{background:linear-gradient(135deg,#ff6b00,#ff3b30)}
+/* tarjetas estadísticas */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.card{position:relative;overflow:hidden;background:#fff;border:2px solid var(--borde);border-radius:22px;padding:18px 16px;text-align:center;box-shadow:0 8px 22px rgba(20,17,15,.06);transition:transform .15s,box-shadow .15s;animation:subir .5s ease backwards}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}.card:nth-child(4){animation-delay:.26s}.card:nth-child(5){animation-delay:.33s}
+@keyframes subir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(255,107,0,.16)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px}
+.card:nth-child(1)::before{background:linear-gradient(90deg,var(--amar),var(--nar))}
+.card:nth-child(2)::before{background:#111}
+.card:nth-child(3)::before{background:linear-gradient(90deg,var(--nar),var(--rojo))}
+.card:nth-child(4)::before{background:linear-gradient(90deg,var(--amar),var(--nar))}
+.card:nth-child(5)::before{background:linear-gradient(90deg,var(--rojo),#ff7a00)}
+.card .ico-c{width:50px;height:50px;margin:10px auto 10px;border-radius:16px 16px 16px 4px;display:flex;align-items:center;justify-content:center;font-size:25px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.card .num{font-size:34px;font-weight:900;color:var(--negro);line-height:1}
+.card .lbl{font-size:12px;color:#8a8178;font-weight:800;margin-top:6px}
+.ico-c.g{background:linear-gradient(135deg,#fff3cc,#ffe9d6)} .ico-c.a{background:#e9e9e9} .ico-c.y{background:linear-gradient(135deg,#fff6d6,#ffe9c7)} .ico-c.l{background:linear-gradient(135deg,#ffe9d6,#ffd9b6)} .ico-c.r{background:linear-gradient(135deg,#ffd9d9,#ffe0d0)}
+/* barras */
+.bars-card{background:#fff;border:2px solid var(--borde);border-radius:26px;padding:20px 18px;display:flex;align-items:flex-end;gap:12px;height:190px;box-shadow:0 8px 22px rgba(20,17,15,.06);animation:subir .5s ease backwards .2s}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bar .v{background:linear-gradient(180deg,var(--amar),var(--nar));width:100%;max-width:52px;border-radius:12px 12px 5px 5px;min-height:5px;box-shadow:0 -4px 0 rgba(0,0,0,.08) inset,0 6px 14px rgba(255,107,0,.25);transition:height .6s ease}
+.bar .v.vac{background:#f0ece6;box-shadow:none}
+.bar:hover .v{filter:saturate(1.2)brightness(1.05)}
+.bar .d{font-size:11px;font-weight:800;margin-top:8px;color:#8a8178}
+.bar .d b{color:var(--negro)}
+/* nota foto */
+.aviso{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:linear-gradient(120deg,#fffdf3,#ffe9c7);border:2px solid #ffdfae;border-radius:20px;padding:14px 18px;margin-top:16px;box-shadow:0 6px 16px rgba(255,192,0,.12)}
+.aviso .cal{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--amar),var(--nar));display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 46px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
+.aviso p{margin:0;font-size:13px;color:#6b5d4e;font-weight:800}
+.aviso code{background:#fff;border:1px solid #ffe0ae;padding:2px 7px;border-radius:8px;font-size:12px;color:var(--nar-osc)}
+/* dos columnas */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}
+.panel{background:#fff;border:2px solid var(--borde);border-radius:24px;padding:4px 18px;box-shadow:0 8px 22px rgba(20,17,15,.06);overflow:hidden}
+.panel li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f6efe4;font-size:14px;transition:background .15s}
+.panel li:last-child{border-bottom:none}
+.panel li:hover{background:#fff9ee}
+.panel ul{margin:0;padding:0;list-style:none}
+.avatar{width:38px;height:38px;border-radius:50%;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 38px;background:linear-gradient(135deg,var(--ary1,var(--nar)),var(--ary2,var(--rojo)));box-shadow:0 4px 10px rgba(255,107,0,.3)}
+.panel li:nth-child(1) .avatar{--ary1:#ffc000;--ary2:#ff6b00}
+.panel li:nth-child(2) .avatar{--ary1:#14110f;--ary2:#3a322b}
+.panel li:nth-child(3) .avatar{--ary1:#ff6b00;--ary2:#ff3b30}
+.panel li:nth-child(4) .avatar{--ary1:#ff8a00;--ary2:#ffc000}
+.panel li:nth-child(5) .avatar{--ary1:#ff3b30;--ary2:#ff8a00}
+.panel li:nth-child(n+6) .avatar{--ary1:#3a322b;--ary2:#14110f}
+.panel .fuego{margin-left:auto;background:#fff0e6;color:var(--rojo);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:900}
+/* tiktok */
+.tick{position:relative;overflow:hidden;background:var(--negro);border-radius:24px;padding:18px;color:#fff;box-shadow:0 14px 30px rgba(20,17,15,.35);animation:subir .5s ease backwards .3s}
+.tick::before{content:'';position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,59,48,.35);filter:blur(4px);top:-60px;right:-40px}
+.tick::after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,107,0,.3);filter:blur(4px);bottom:-50px;left:-40px}
+.tick .enc{position:relative;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tick .enc .logo-t{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));color:#ffd76a;display:flex;align-items:center;justify-content:center;font-size:18px;border:1px solid rgba(255,192,0,.4)}
+.tick p{position:relative;font-size:13px;color:#d8cfc2;font-weight:700;line-height:1.5;margin:4px 0}
+/* instagram */
+.tick.ig{background:linear-gradient(120deg,#833ab4,#fd1d1d 50%,#fcb045);box-shadow:0 14px 30px rgba(253,29,29,.28)}
+.tick.ig::before{background:rgba(255,255,255,.22)}
+.tick.ig::after{background:rgba(255,255,255,.14)}
+.tick.ig .logo-t{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);color:#fff;font-size:16px}
+.tick.ig a{position:relative;color:#fff;font-weight:800}
+/* rastro del cursor (chispas del Llano) */
+#trail{position:fixed;inset:0;pointer-events:none;z-index:999}
+.spark{position:fixed;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;animation:chispa .8s ease-out forwards;box-shadow:0 0 10px currentColor}
+.spark.star{border-radius:2px}
+@keyframes chispa{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)), calc(-50% + var(--dy,-40px))) scale(.12)}}
+footer{margin-top:8px;background:var(--negro);color:#ffd76a;text-align:center;padding:20px;font-size:13px;font-weight:800}
+footer b{color:var(--amar)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <img id="logo-img" src="/static/corocoro.png" onerror="this.src='https://via.placeholder.com/100?text=C'" class="logo" alt="Corocoro"/>
+  <div class="brand">Corocoro del Casanare<small>La voz digital del Llano</small></div>
+  <div class="spacer"></div>
+  <div class="stat-pill"><i class="fa-solid fa-user-group"></i><span id="p-pill">0</span></div>
+  <div class="stat-pill"><i class="fa-solid fa-message"></i><span id="m-pill">0</span></div>
+</header>
+
+<main>
+  <section class="hero">
+    <img id="mascota-img" src="/static/corocoro.png" onerror="this.src='https://via.placeholder.com/104?text=C'" class="mascota" alt="Corocoro"/>
+    <div class="box-left">
+      <h1>¡Ajah, bienvenido al panel, <em>Yeferson</em>!</h1>
+      <p>Personas hablando con Corocoro en Telegram, contenido generado y más.</p>
+      <div style="margin-top:14px"><a id="btn-tg" class="btnD telegram" href="https://t.me/Corocoro_casanare_bot">Habla con Corocoro <i class="fa-solid fa-paper-plane"></i></a></div>
+    </div>
+    <div class="box-right">
+      <div class="ring-wrap">
+        <svg width="116" height="116">
+          <circle cx="58" cy="58" r="48" fill="none" stroke="#ffe3c2" stroke-width="13"/>
+          <circle id="ring" cx="58" cy="58" r="48" fill="none" stroke="#ff6b00" stroke-width="13" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6"/>
+        </svg>
+        <div class="pct" id="ring-pct">0%</div>
+      </div>
+      <div class="ring-txt" id="ring-txt">Objetivo del día: 10 mensajes</div>
+    </div>
+  </section>
+
+  <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-chart-simple"></i></span> Estadísticas generales</div>
+  <div class="grid">
+    <div class="card"><div class="ico-c g"><i class="fa-solid fa-message"></i></div><div class="num" id="c-msg">-</div><div class="lbl">Mensajes (bot)</div></div>
+    <div class="card"><div class="ico-c a"><i class="fa-solid fa-user"></i></div><div class="num" id="c-usr">-</div><div class="lbl">Personas que han escrito</div></div>
+    <div class="card"><div class="ico-c y"><i class="fa-solid fa-fire"></i></div><div class="num" id="c-racha">-</div><div class="lbl">Racha de días activos</div></div>
+    <div class="card"><div class="ico-c l"><i class="fa-solid fa-feather"></i></div><div class="num" id="c-ctn">-</div><div class="lbl">Contenidos generados</div></div>
+    <div class="card"><div class="ico-c r"><i class="fa-solid fa-clapperboard"></i></div><div class="num" id="c-vid">-</div><div class="lbl">Videos generados</div></div>
+  </div>
+
+  <div class="sec-titulo"><span class="chip a"><i class="fa-solid fa-chart-line"></i></span> Últimos 7 días</div>
+  <div class="bars-card" id="bars"></div>
+
+  <div class="sec-titulo"><span class="chip a"><i class="fa-solid fa-clock"></i></span> ¿A qué horas te escriben?</div>
+  <div class="bars-card" id="hora-bars"></div>
+
+  <div class="aviso">
+    <div class="cal"><i class="fa-solid fa-hat-cowboy"></i></div>
+    <p>Desde Telegram, dile a Corocoro qué quieres crear (video o post) y verás aquí el plan pa' tus redes.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="sec-titulo"><span class="chip l"><i class="fa-solid fa-users"></i></span> Últimas personas</div>
+      <div class="panel"><ul id="users"><li>Cargando...</li></ul></div>
+    </div>
+    <div>
+      <div class="sec-titulo"><span class="chip r"><i class="fa-brands fa-tiktok"></i></span> TikTok del Corocoro</div>
+      <div class="tick" id="tiktok">Cargando...</div>
+    </div>
+  </div>
+
+  <div class="sec-titulo"><span class="chip g"><i class="fa-brands fa-instagram"></i></span> Instagram del Corocoro</div>
+  <div class="tick ig" id="insta">Cargando...</div>
+
+  <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-comments"></i></span> ¿Quieres contarle algo?</div>
+  <div style="display:flex;justify-content:center;margin-top:6px">
+    <a class="btnD grande telegram" href="https://t.me/Corocoro_casanare_bot">Habla con Corocoro en Telegram</a>
+  </div>
+  <p style="font-size:12px;color:#8a8178;text-align:center;margin-top:16px;font-weight:700">El chat es 100% por Telegram. Esta página es solo para ver estadísticas y contactarte con el administrador.</p>
+</main>
+
+<footer>Hecho con orgullo <b>casanareño</b> · Yopal — Casanare</footer>
+
+<script>
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'-':s;return d.innerHTML}
+async function load(){
+  const t=Date.now();
+  ['logo-img','mascota-img'].forEach(id=>{const i=document.getElementById(id);if(i){i.onerror=null;i.src='/static/corocoro.png?t='+t}});
+  try{
+    const [st,cf]=await Promise.all([fetch('/stats?t='+t).then(r=>r.json()),fetch('/config?t='+t).then(r=>r.json())]);
+    document.getElementById('c-msg').textContent=st.total_mensajes||0;
+    document.getElementById('c-usr').textContent=st.usuarios_unicos||0;
+    document.getElementById('c-ctn').textContent=st.contenidos_generados||0;
+    document.getElementById('c-vid').textContent=st.videos_generados||0;
+    document.getElementById('m-pill').textContent=st.total_mensajes||0;
+    document.getElementById('p-pill').textContent=st.usuarios_unicos||0;
+
+    const dias=st.ultimos_7_dias||[];
+    let racha=0;
+    for(let i=dias.length-1;i>=0;i--){ if(dias[i].mensajes>0)racha++; else if(i<dias.length-1)break; }
+    if(racha>0&&dias.length>0&&dias[dias.length-1].mensajes===0)racha=0;
+    document.getElementById('c-racha').textContent=racha;
+
+    const hoy=st.mensajes_hoy||0;
+    const meta=10, pct=Math.min(100,Math.round((hoy/meta)*100));
+    const circ=document.getElementById('ring');
+    circ.style.strokeDashoffset=301.6-(301.6*pct/100);
+    document.getElementById('ring-pct').textContent=pct+'%';
+    if(pct>=100)document.getElementById('ring-txt').innerHTML='<i class="fa-solid fa-bullseye"></i> ¡Objetivo del día superado!';
+
+    const bars=document.getElementById('bars'); bars.innerHTML='';
+    const max=Math.max(1,...dias.map(d=>d.mensajes));
+    dias.forEach(d=>{
+      const div=document.createElement('div');div.className='bar';
+      const v=document.createElement('div');v.className='v'+(d.mensajes===0?' vac':'');
+      v.style.height=(d.mensajes/max*100)+'%';
+      const f=document.createElement('div');f.className='d';f.innerHTML='<b>'+(d.fecha||'').slice(5)+'</b> · '+d.mensajes;
+      div.appendChild(v);div.appendChild(f);bars.appendChild(div)});
+
+    const ul=document.getElementById('users');ul.innerHTML='';
+    (st.usuarios_recientes||[]).forEach(u=>{
+      const nom=u.nombre||'Anónimo';
+      const li=document.createElement('li');
+      const av=document.createElement('div');av.className='avatar';av.textContent=(nom||'A').charAt(0).toUpperCase();
+      li.appendChild(av);
+      const txt=document.createElement('span');txt.textContent=(nom)+' · '+u.chats+' msgs';
+      li.appendChild(txt);
+      const hh=(u.ultimo_hora!=null)?String(u.ultimo_hora).padStart(2,'0')+':00':'';
+      const fue=document.createElement('span');fue.className='fuego';fue.textContent=hh||(u.ultimo||'');
+      li.appendChild(fue);
+      ul.appendChild(li)});
+    if(!(st.usuarios_recientes||[]).length)ul.innerHTML='<li style="color:#888">Aún nadie ha escrito. Comparte el bot por Telegram.</li>';
+
+    const horas=st.por_hora||[];
+    const hb=document.getElementById('hora-bars'); hb.innerHTML='';
+    const hmax=Math.max(1,...horas.map(h=>h.mensajes));
+    horas.forEach(h=>{
+      const col=document.createElement('div');col.className='bar';
+      const v=document.createElement('div');v.className='v'+(h.mensajes===0?' vac':'');
+      v.style.height=(h.mensajes/hmax*84)+'%';
+      const f=document.createElement('div');f.className='d';f.innerHTML='<b>'+String(h.hora).padStart(2,'0')+'</b>·'+h.mensajes;
+      col.appendChild(v);col.appendChild(f);hb.appendChild(col)});
+
+    const tg=document.getElementById('btn-tg'); if(cf.telegram) tg.href=cf.telegram;
+    const tk=document.getElementById('tiktok');
+    const enc='<div class="enc"><div class="logo-t"><i class="fa-brands fa-tiktok"></i></div><b>TikTok del Corocoro</b></div>';
+    if(cf.tiktok_handle){tk.innerHTML=enc+'<p>Síguenos en TikTok:</p><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@'+cf.tiktok_handle+'"></blockquote><script async src="https://www.tiktok.com/embed.js"><\/script>'}else{
+      tk.innerHTML=enc+'<p>Síguenos en TikTok y activa la campanita.</p>'}
+    const ig=document.getElementById('insta');
+    const ienc='<div class="enc"><div class="logo-t"><i class="fa-brands fa-instagram"></i></div><b>Instagram del Corocoro</b></div>';
+    if(cf.instagram_handle){ig.innerHTML=ienc+'<p>Síguenos en Instagram:</p><a href="https://instagram.com/'+cf.instagram_handle+'" target="_blank" rel="noopener">@'+cf.instagram_handle+'</a>'}
+    else{ig.innerHTML=ienc+'<p>Síguenos en Instagram y activa la campanita.</p>'}
+  }catch(e){document.getElementById('c-msg').textContent='!';document.getElementById('users').innerHTML='<li>Sin conexión con el servidor.</li>'}
+}
+/* chispas del Llano con el cursor */
+(function(){
+  const cols=['#ffc000','#ff6b00','#ff3b30','#ffdd88'];
+  const trail=document.createElement('div');trail.id='trail';document.body.appendChild(trail);
+  let last=0;
+  function spark(x,y,big){
+    const el=document.createElement('i');el.className='spark'+(Math.random()<.25?' star':'');
+    const s=big?16+Math.random()*18:6+Math.random()*9;
+    el.style.left=x+'px';el.style.top=y+'px';
+    el.style.width=s+'px';el.style.height=s+'px';
+    el.style.color=cols[(Math.random()*cols.length)|0];
+    el.style.setProperty('--dx',(Math.random()-.5)*70+'px');
+    el.style.setProperty('--dy',(Math.random()-.6)*90+'px');
+    trail.appendChild(el);
+    setTimeout(()=>el.remove(),820);
+  }
+  document.addEventListener('pointermove',e=>{
+    const now=performance.now();
+    if(now-last<28)return; last=now;
+    spark(e.clientX,e.clientY,false);
+  });
+  document.addEventListener('pointerdown',e=>{
+    for(let i=0;i<10;i++)setTimeout(()=>spark(e.clientX,e.clientY,true),i*20);
+  });
+})();
+load();
+</script>
+</body>
+</html>

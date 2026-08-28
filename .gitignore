@@ -1,0 +1,16 @@
+# secretos
+.env
+*.env
+!*.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# generados
+backend/static/llm.log
+backend/static/*.mp3
+backend/static/*.mp4
+backend/stats/
