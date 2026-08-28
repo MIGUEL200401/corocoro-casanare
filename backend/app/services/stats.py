@@ -97,6 +97,21 @@ def registrar_propuesta(titulo: str = ""):
         _save(s)
 
 
+def marcar_objetivo(tipo: str):
+    """Para el demo: marca un objetivo del día como realizado (sin tocar totales)."""
+    with _lock:
+        s = _load()
+        d = _log_hoy(s)
+        if tipo == "propuesta":
+            d["propuesta"] = True
+            d["propuesta_hora"] = d.get("propuesta_hora") or datetime.datetime.now().strftime("%H:%M")
+        elif tipo == "contenido":
+            d["contenido"] = max(d.get("contenido", 0), 1)
+        elif tipo == "video":
+            d["video"] = max(d.get("video", 0), 1)
+        _save(s)
+
+
 def resumen():
     s = _load()
     usuarios = s.get("usuarios", {})

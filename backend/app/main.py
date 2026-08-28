@@ -154,6 +154,14 @@ async def avatar(data: bytes = Body(...)):
     pathlib.Path("static/corocoro.png").write_bytes(data)
     return {"ok": True, "msg": "Foto de Corocoro actualizada. Ya se usa en el panel, videos y posts."}
 
+@app.post("/objetivo/demo")
+async def objetivo_demo(tipo: str = Query("video")):
+    """Demo: marca un objetivo del día como realizado (video/post/idea) pa' la presentación."""
+    if tipo not in ("video", "contenido", "propuesta"):
+        return {"ok": False, "error": "tipo debe ser video, contenido o propuesta"}
+    stats.marcar_objetivo(tipo)
+    return {"ok": True, "objetivos": (stats.resumen().get("objetivos") or {})}
+
 @app.post("/propuesta/enviar")
 async def propuesta_enviar():
     """Envía YA la propuesta del día al admin (igual que a las 5:00 am)."""

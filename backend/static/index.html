@@ -97,6 +97,11 @@ main{max-width:1020px;margin:0 auto;padding:22px 16px 56px}
 .objs .row.hecho .tt i{color:#1f9d55}
 .objs .bol{margin-left:auto;font-size:11px;font-weight:900;letter-spacing:.5px;color:#b7ae9f;background:#f3efe8;border-radius:999px;padding:4px 12px}
 .objs .row.hecho .bol{background:linear-gradient(135deg,var(--amar),var(--nar));color:#fff}
+/* herramientas de demo (solo presentación) */
+.demo{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.demo button{border:2px solid var(--borde);background:#fff;color:#8a8178;font-family:Quicksand,sans-serif;font-weight:800;font-size:12px;border-radius:999px;padding:7px 14px;cursor:pointer;transition:.15s}
+.demo button:hover{border-color:var(--nar);color:var(--nar);transform:translateY(-1px)}
+.demo button.ok{background:linear-gradient(135deg,var(--amar),var(--nar));border-color:var(--nar);color:#fff}
 /* nota foto */
 .aviso{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:linear-gradient(120deg,#fffdf3,#ffe9c7);border:2px solid #ffdfae;border-radius:20px;padding:14px 18px;margin-top:16px;box-shadow:0 6px 16px rgba(255,192,0,.12)}
 .aviso .cal{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--amar),var(--nar));display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 46px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
@@ -172,6 +177,11 @@ footer b{color:var(--amar)}
 
   <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-bullseye"></i></span> Lo que Corocoro hace hoy (objetivos del día)</div>
   <div class="objs" id="objs">Cargando...</div>
+  <div class="demo" id="demo">
+    <button data-t="propuesta"><i class="fa-solid fa-lightbulb"></i> Marcar idea (5 AM) hecha</button>
+    <button data-t="contenido"><i class="fa-solid fa-palette"></i> Marcar post hecho</button>
+    <button data-t="video"><i class="fa-solid fa-video"></i> Marcar video hecho</button>
+  </div>
 
   <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-chart-simple"></i></span> Estadísticas generales</div>
   <div class="grid">
@@ -337,6 +347,16 @@ async function load(){
     for(let i=0;i<10;i++)setTimeout(()=>spark(e.clientX,e.clientY,true),i*20);
   });
 })();
+/* botones demo: marcar objetivos del día pa' la presentación */
+document.getElementById('demo').querySelectorAll('button').forEach(b=>{
+  b.addEventListener('click',async()=>{
+    b.classList.add('ok');
+    b.disabled=true;
+    try{await fetch('/objetivo/demo?tipo='+encodeURIComponent(b.dataset.t),{method:'POST'});}catch(e){}
+    b.disabled=false;
+    load();
+  });
+});
 load();
 </script>
 </body>
