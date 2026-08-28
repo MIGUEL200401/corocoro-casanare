@@ -1,5 +1,5 @@
 {
-  "total_mensajes": 164,
+  "total_mensajes": 165,
   "usuarios": {
     "verif-123": {
       "nombre": "Tester",
@@ -69,21 +69,36 @@
       "primera_vez": "2026-08-28",
       "ultimo": "2026-08-28",
       "ultimo_hora": 0
+    },
+    "1234567890": {
+      "nombre": "Juan",
+      "chats": 1,
+      "primera_vez": "2026-08-28",
+      "ultimo": "2026-08-28",
+      "ultimo_hora": 4
     }
   },
   "por_dia": {
     "2026-08-27": 147,
-    "2026-08-28": 17
+    "2026-08-28": 18
   },
   "por_hora": {
     "0": 1,
     "1": 1,
-    "3": 13
+    "3": 13,
+    "4": 1
   },
   "contenidos_generados": 12,
   "videos_generados": 8,
   "desde": "2026-08-27",
   "feed": [
+    {
+      "nombre": "Juan",
+      "hora": 4,
+      "fecha": "2026-08-28",
+      "uid": "1234567890",
+      "mensajes": 1
+    },
     {
       "nombre": "Yeferson",
       "hora": 3,
@@ -196,7 +211,10 @@
       "video": 1,
       "propuesta": true,
       "propuesta_titulo": "Aprende a tocar arpa y cuatro desde cero (online)",
-      "propuesta_hora": "04:43"
+      "propuesta_hora": "04:43",
+      "personas": [
+        "1234567890"
+      ]
     }
   }
 }

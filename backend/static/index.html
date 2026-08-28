@@ -178,7 +178,6 @@ footer b{color:var(--amar)}
   <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-bullseye"></i></span> Lo que Corocoro hace hoy (objetivos del día)</div>
   <div class="objs" id="objs">Cargando...</div>
   <div class="demo" id="demo">
-    <button data-t="propuesta"><i class="fa-solid fa-lightbulb"></i> Marcar idea (5 AM) hecha</button>
     <button data-t="contenido"><i class="fa-solid fa-palette"></i> Marcar post hecho</button>
     <button data-t="video"><i class="fa-solid fa-video"></i> Marcar video hecho</button>
   </div>
@@ -253,7 +252,7 @@ async function load(){
       oj.propuesta,
       (oj.contenido_hoy||0)>0,
       (oj.video_hoy||0)>0,
-      hoy>=mh
+      (oj.personas_hoy||0)>=mh
     ];
     const hechas=metas.filter(Boolean).length, total=metas.length;
     const pct=Math.min(100,Math.round((hechas/total)*100));
@@ -263,10 +262,10 @@ async function load(){
     document.getElementById('ring-txt').innerHTML=(pct>=100)?'<i class="fa-solid fa-fire"></i> ¡Todos los objetivos de hoy!':'Objetivos de hoy: <b>'+hechas+'</b>/'+total;
     const objs=document.getElementById('objs'); objs.innerHTML='';
     const objItems=[
-      {i:'fa-lightbulb', tt:'Idea del día (5 AM)', dt: oj.propuesta ? (((oj.propuesta_hora||'05:00'))+' · '+((oj.propuesta_titulo||'lista').slice(0,60))) : 'Corocoro investiga en las redes', ok:oj.propuesta},
-      {i:'fa-palette', tt:'Post de la idea', dt: (oj.contenido_hoy||0)>0 ? (oj.contenido_hoy+' generado hoy') : 'Aún sin diseñar', ok:(oj.contenido_hoy||0)>0},
-      {i:'fa-video', tt:'Video del día', dt: (oj.video_hoy||0)>0 ? (oj.video_hoy+' listo hoy') : 'Aún sin armar', ok:(oj.video_hoy||0)>0},
-      {i:'fa-comment', tt:'Buen arranque del chat', dt: hoy+'/'+mh+' personas escribieron hoy', ok:hoy>=mh}
+      {i:'fa-lightbulb', tt:'Idea del día (5 AM)', dt: oj.propuesta ? (((oj.propuesta_hora||'05:00'))+' · '+((oj.propuesta_titulo||'lista').slice(0,60))) : 'Corocoro investiga a las 5 AM', ok:oj.propuesta},
+      {i:'fa-palette', tt:'Post de la idea', dt: (oj.contenido_hoy||0)>0 ? (oj.contenido_hoy+' generado hoy') : 'Sube cuando lo pidas', ok:(oj.contenido_hoy||0)>0},
+      {i:'fa-video', tt:'Video del día', dt: (oj.video_hoy||0)>0 ? (oj.video_hoy+' listo hoy') : 'Sube cuando lo pidas', ok:(oj.video_hoy||0)>0},
+      {i:'fa-comment', tt:'Llaneros en el chat', dt: (oj.personas_hoy||0)+'/10 personas de verdad hoy', ok:(oj.personas_hoy||0)>=10}
     ];
     objItems.forEach(o=>{
       const r=document.createElement('div'); r.className='row'+(o.ok?' hecho':'');

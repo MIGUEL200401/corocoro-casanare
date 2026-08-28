@@ -1,8 +1,27 @@
-import json, pathlib, threading, datetime
+import json, pathlib, threading, datetime, os
 from datetime import timedelta
 
 _lock = threading.Lock()
 STATS_FILE = pathlib.Path("static/stats.json")
+
+
+def _admin_id():
+    aid = os.getenv("ADMIN_CHAT_ID", "").strip()
+    if aid:
+        return aid
+    for p in [pathlib.Path("admin_id.txt"),
+              pathlib.Path("../../telegram_bot/admin_id.txt"),
+              pathlib.Path("../telegram_bot/admin_id.txt")]:
+        if p.exists():
+            try:
+                txt = p.read_text(encoding="utf-8-sig", errors="ignore")
+                for linea in txt.splitlines():
+                    linea = linea.strip().lstrip("\ufeff").strip()
+                    if linea:
+                        return linea
+            except Exception:
+                pass
+    return ""
 
 
 def _default():
@@ -40,7 +59,7 @@ def _log_hoy(s):
     """Registro de objetivos del día (lo que Corocoro hace hoy)."""
     hoy = datetime.date.today().isoformat()
     log = s.get("log", {})
-    d = log.setdefault(hoy, {"contenido": 0, "video": 0, "propuesta": False, "propuesta_titulo": "", "propuesta_hora": ""})
+    d = log.setdefault(hoy, {"contenido": 0, "video": 0, "propuesta": False, "propuesta_titulo": "", "propuesta_hora": "", "personas": []})
     return d
 
 
@@ -73,6 +92,12 @@ def registrar_mensaje(user_id: str = "anon", nombre: str = ""):
         feed.insert(0, {"nombre": nombre or (u["nombre"] or "Anónimo"), "hora": hora,
                         "fecha": hoy, "uid": uid, "mensajes": u["chats"]})
         s["feed"] = feed[:40]
+        # personas de verdad (sin el admin) pa' el objetivo del chat
+        if uid and uid != _admin_id():
+            pers = _log_hoy(s).get("personas") or []
+            if uid not in pers:
+                pers.append(uid)
+            _log_hoy(s)["personas"] = pers[:50]
         _save(s)
 
 
@@ -139,6 +164,7 @@ def resumen():
             "propuesta_hora": logh.get("propuesta_hora", ""),
             "contenido_hoy": logh.get("contenido", 0),
             "video_hoy": logh.get("video", 0),
+            "personas_hoy": len(logh.get("personas") or []),
         },
         "ultimos_7_dias": ultimos7,
         "desde": s.get("desde"),

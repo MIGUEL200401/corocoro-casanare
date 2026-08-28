@@ -118,19 +118,11 @@ async def video_auto():
 
 @app.post("/propuesta")
 async def propuesta_manual():
-    data = await generar_propuesta_diaria()
-    p = data.get("propuesta") or {}
-    if p:
-        stats.registrar_propuesta(p.get("titulo", ""))
-    return data
+    return await generar_propuesta_diaria()
 
 @app.get("/propuesta")
 async def propuesta_get():
-    data = await generar_propuesta_diaria()
-    p = data.get("propuesta") or {}
-    if p:
-        stats.registrar_propuesta(p.get("titulo", ""))
-    return data
+    return await generar_propuesta_diaria()
 
 @app.post("/avatar")
 async def avatar(data: bytes = Body(...)):
@@ -156,17 +148,17 @@ async def avatar(data: bytes = Body(...)):
 
 @app.post("/objetivo/demo")
 async def objetivo_demo(tipo: str = Query("video")):
-    """Demo: marca un objetivo del día como realizado (video/post/idea) pa' la presentación."""
-    if tipo not in ("video", "contenido", "propuesta"):
-        return {"ok": False, "error": "tipo debe ser video, contenido o propuesta"}
+    """Demo: marca un objetivo como realizado (video/post) pa' la presentación. La idea SOLO sube a las 5 AM."""
+    if tipo not in ("video", "contenido"):
+        return {"ok": False, "error": "tipo debe ser video o contenido (la idea sube sola a las 5 AM)"}
     stats.marcar_objetivo(tipo)
     return {"ok": True, "objetivos": (stats.resumen().get("objetivos") or {})}
 
 @app.post("/propuesta/enviar")
 async def propuesta_enviar():
-    """Envía YA la propuesta del día al admin (igual que a las 5:00 am)."""
+    """Envía YA la propuesta del día al admin (igual que a las 5:00 am, sin marcar el objetivo)."""
     from app.services.scheduler import enviar_propuesta_admin
-    ok = await enviar_propuesta_admin()
+    ok = await enviar_propuesta_admin()  # marcar_objetivo=False: la idea sube solo a las 5 AM
     return {"ok": ok, "msg": "Propuesta enviada a tu Telegram (revisa el bot)."}
 
 @app.post("/propuesta-video")

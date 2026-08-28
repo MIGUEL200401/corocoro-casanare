@@ -18,13 +18,11 @@ def get_admin_chat_id():
                     return linea
     return ""
 
-async def enviar_propuesta_admin():
+async def enviar_propuesta_admin(marcar_objetivo: bool = False):
     from app.services.propuestas import generar_propuesta_diaria
     data = await generar_propuesta_diaria()
     p = data.get("propuesta", {})
     pathlib.Path("static/propuesta_diaria.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    from app.services import stats
-    stats.registrar_propuesta(p.get("titulo", ""))
     admin_id = get_admin_chat_id()
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     if not (admin_id and token and p):
@@ -57,16 +55,23 @@ async def enviar_propuesta_admin():
     ]]}
     import httpx
     async with httpx.AsyncClient(timeout=15) as c:
-        await c.post(f"https://api.telegram.org/bot{token}/sendMessage", json={
+        r = await c.post(f"https://api.telegram.org/bot{token}/sendMessage", json={
             "chat_id": admin_id, "text": texto, "reply_markup": kb})
+    if r.status_code != 200:
+        print("⚠️ Telegram rechazó la propuesta:", r.text[:200])
+        return False
     print(f"✅ Propuesta enviada: {p.get('titulo')}")
+    # la idea del día SOLO se marca cuando es la 5:00 am (job diario), no por pedidos manuales
+    if marcar_objetivo and p.get("titulo"):
+        from app.services import stats
+        stats.registrar_propuesta(p.get("titulo", ""))
     return True
 
 
 async def job_diario():
     print(f"[{datetime.datetime.now()}] 🤠 Corocoro 5am: investigando idea de emprendimiento en redes...")
     try:
-        await enviar_propuesta_admin()
+        await enviar_propuesta_admin(marcar_objetivo=True)
     except Exception as e:
         print("auto emprendimiento error", e)
 
