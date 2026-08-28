@@ -85,6 +85,18 @@ main{max-width:1020px;margin:0 auto;padding:22px 16px 56px}
 .bar:hover .v{filter:saturate(1.2)brightness(1.05)}
 .bar .d{font-size:11px;font-weight:800;margin-top:8px;color:#8a8178}
 .bar .d b{color:var(--negro)}
+/* objetivos del día */
+.objs{background:#fff;border:2px solid var(--borde);border-radius:22px;padding:8px 16px;box-shadow:0 8px 22px rgba(20,17,15,.06);animation:subir .5s ease backwards .1s}
+.objs .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #f6efe4}
+.objs .row:last-child{border-bottom:none}
+.objs .chk{width:34px;height:34px;border-radius:50%;border:2px dashed #e5dcc9;display:flex;align-items:center;justify-content:center;color:#b7ae9f;flex:0 0 34px}
+.objs .row.hecho .chk{background:linear-gradient(135deg,var(--amar),var(--nar));border:2px solid var(--nar);color:#fff;box-shadow:0 4px 10px rgba(255,107,0,.3)}
+.objs .row .tt{font-size:14px;font-weight:800;color:var(--negro)}
+.objs .row .tt i{margin-right:8px;color:var(--nar)}
+.objs .row .dt{font-size:12px;color:#8a8178;font-weight:700}
+.objs .row.hecho .tt i{color:#1f9d55}
+.objs .bol{margin-left:auto;font-size:11px;font-weight:900;letter-spacing:.5px;color:#b7ae9f;background:#f3efe8;border-radius:999px;padding:4px 12px}
+.objs .row.hecho .bol{background:linear-gradient(135deg,var(--amar),var(--nar));color:#fff}
 /* nota foto */
 .aviso{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:linear-gradient(120deg,#fffdf3,#ffe9c7);border:2px solid #ffdfae;border-radius:20px;padding:14px 18px;margin-top:16px;box-shadow:0 6px 16px rgba(255,192,0,.12)}
 .aviso .cal{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--amar),var(--nar));display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 46px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15)}
@@ -154,9 +166,12 @@ footer b{color:var(--amar)}
         </svg>
         <div class="pct" id="ring-pct">0%</div>
       </div>
-      <div class="ring-txt" id="ring-txt">Objetivo del día: 10 mensajes</div>
+      <div class="ring-txt" id="ring-txt">Objetivos de hoy</div>
     </div>
   </section>
+
+  <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-bullseye"></i></span> Lo que Corocoro hace hoy (objetivos del día)</div>
+  <div class="objs" id="objs">Cargando...</div>
 
   <div class="sec-titulo"><span class="chip g"><i class="fa-solid fa-chart-simple"></i></span> Estadísticas generales</div>
   <div class="grid">
@@ -222,11 +237,36 @@ async function load(){
     document.getElementById('c-racha').textContent=racha;
 
     const hoy=st.mensajes_hoy||0;
-    const meta=10, pct=Math.min(100,Math.round((hoy/meta)*100));
+    const oj=st.objetivos||{};
+    const mh=10;
+    const metas=[
+      oj.propuesta,
+      (oj.contenido_hoy||0)>0,
+      (oj.video_hoy||0)>0,
+      hoy>=mh
+    ];
+    const hechas=metas.filter(Boolean).length, total=metas.length;
+    const pct=Math.min(100,Math.round((hechas/total)*100));
     const circ=document.getElementById('ring');
     circ.style.strokeDashoffset=301.6-(301.6*pct/100);
     document.getElementById('ring-pct').textContent=pct+'%';
-    if(pct>=100)document.getElementById('ring-txt').innerHTML='<i class="fa-solid fa-bullseye"></i> ¡Objetivo del día superado!';
+    document.getElementById('ring-txt').innerHTML=(pct>=100)?'<i class="fa-solid fa-fire"></i> ¡Todos los objetivos de hoy!':'Objetivos de hoy: <b>'+hechas+'</b>/'+total;
+    const objs=document.getElementById('objs'); objs.innerHTML='';
+    const objItems=[
+      {i:'fa-lightbulb', tt:'Idea del día (5 AM)', dt: oj.propuesta ? (((oj.propuesta_hora||'05:00'))+' · '+((oj.propuesta_titulo||'lista').slice(0,60))) : 'Corocoro investiga en las redes', ok:oj.propuesta},
+      {i:'fa-palette', tt:'Post de la idea', dt: (oj.contenido_hoy||0)>0 ? (oj.contenido_hoy+' generado hoy') : 'Aún sin diseñar', ok:(oj.contenido_hoy||0)>0},
+      {i:'fa-video', tt:'Video del día', dt: (oj.video_hoy||0)>0 ? (oj.video_hoy+' listo hoy') : 'Aún sin armar', ok:(oj.video_hoy||0)>0},
+      {i:'fa-comment', tt:'Buen arranque del chat', dt: hoy+'/'+mh+' personas escribieron hoy', ok:hoy>=mh}
+    ];
+    objItems.forEach(o=>{
+      const r=document.createElement('div'); r.className='row'+(o.ok?' hecho':'');
+      const c=document.createElement('div'); c.className='chk';
+      c.innerHTML=o.ok?'<i class="fa-solid fa-check"></i>':'<i class="fa-regular fa-circle"></i>';
+      const t=document.createElement('div');
+      t.innerHTML='<div class="tt"><i class="fa-solid '+o.i+'"></i> '+esc(o.tt)+'</div>'+(o.dt?'<div class="dt">'+esc(o.dt)+'</div>':'');
+      r.appendChild(c); r.appendChild(t);
+      const b=document.createElement('div'); b.className='bol'; b.textContent=o.ok?'HECHO':'PENDIENTE';
+      r.appendChild(b); objs.appendChild(r)});
 
     const bars=document.getElementById('bars'); bars.innerHTML='';
     const max=Math.max(1,...dias.map(d=>d.mensajes));

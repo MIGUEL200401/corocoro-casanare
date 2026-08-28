@@ -23,6 +23,8 @@ async def enviar_propuesta_admin():
     data = await generar_propuesta_diaria()
     p = data.get("propuesta", {})
     pathlib.Path("static/propuesta_diaria.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    from app.services import stats
+    stats.registrar_propuesta(p.get("titulo", ""))
     admin_id = get_admin_chat_id()
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     if not (admin_id and token and p):

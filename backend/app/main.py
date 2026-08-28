@@ -118,11 +118,19 @@ async def video_auto():
 
 @app.post("/propuesta")
 async def propuesta_manual():
-    return await generar_propuesta_diaria()
+    data = await generar_propuesta_diaria()
+    p = data.get("propuesta") or {}
+    if p:
+        stats.registrar_propuesta(p.get("titulo", ""))
+    return data
 
 @app.get("/propuesta")
 async def propuesta_get():
-    return await generar_propuesta_diaria()
+    data = await generar_propuesta_diaria()
+    p = data.get("propuesta") or {}
+    if p:
+        stats.registrar_propuesta(p.get("titulo", ""))
+    return data
 
 @app.post("/avatar")
 async def avatar(data: bytes = Body(...)):
